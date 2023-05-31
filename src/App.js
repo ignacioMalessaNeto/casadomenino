@@ -1,15 +1,25 @@
-import React, { createContext, useState } from 'react';
+import React, { useContext } from 'react';
 
-export const StateContext = createContext();
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { Home } from './pages/Home';
+
+import UserContext from './components/StateContext';
 
 const App = () => {
 
-  return (
-    <div>
-      <h1>Olá, bem vindo ao projeto da Casa do Menino Jesus de Praga</h1>
 
-      <p></p>
-    </div>
+  return (
+    <UserContext.Provider value={{user: "ignacio", route: "Home"}}>
+      <div>
+        <h1>Olá, bem vindo ao projeto da Casa do Menino Jesus de Praga</h1>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </UserContext.Provider>
   );
 }
 
