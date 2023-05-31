@@ -10,8 +10,6 @@ import UserContext from '../../components/Context';
 export function Home() {
     const { user, route } = useContext(UserContext);
 
-    let teste = 10;
-
     return (
         <Container>
             <Header />

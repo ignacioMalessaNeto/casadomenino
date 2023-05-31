@@ -7,17 +7,4 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    > button {
-        border-radius: 10px;
-        padding: 10px;
-        height: 50px;
-        background: black;
-        border: none;
-    }
-
-    a {
-        text-decoration: none;
-        color: gray;
-    }
 `;
