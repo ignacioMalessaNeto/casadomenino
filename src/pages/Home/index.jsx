@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import UserContext from '../../components/Context';
-import { Box, Card } from '@mui/material';
+import { Box, Card, CardContent } from '@mui/material';
 
 
 export function Home() {
@@ -24,14 +24,14 @@ export function Home() {
 
 
   return (
-    <Box sx={{diplay: "flex", gap: "50px", flexWrap: "Wrap"}}>
-      <p>Olá {user}</p>
-      <p>Home</p>
-
+    <Box sx={{display: "flex", gap: "15px", flexWrap: "wrap", justifyContent: 'center'}}>
       {campanhas.map((data) => (
-        <Card sx={{ maxWidth: 600, display: "flex", flexDirection: "column" }} key={data.attributes.id}>
+        <Card key={data.attributes.id}>
+          <CardContent sx={{ maxWidth: 400, display: "flex", flexDirection: "column" }} >
+          <img src={`https://strapi-production-c201.up.railway.app${data.attributes.imagem.data.attributes.formats.medium.url}`} alt="" />
           <h1>{data.attributes.titulo}</h1>
-          <p>{data.attributes.descricao}</p>          
+          <p>{data.attributes.descricao}</p>
+          </CardContent>        
         </Card>
       ))}
 
