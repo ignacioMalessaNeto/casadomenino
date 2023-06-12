@@ -1,5 +1,3 @@
-import React, { useContext, useState } from 'react';
-
 import { Routes, Route } from 'react-router-dom';
 
 import { Home } from './pages/Home';
@@ -18,10 +16,9 @@ import { Container } from '@mui/material';
 
 const App = () => {
 
-  const [route, setRoute ] = useState('Home');
 
   return (
-    <UserContext.Provider value={{ user: "Ignacio", route, setRoute}}>
+    <UserContext.Provider value={{ user: "Ignacio"}}>
       <Header />
       <Container sx={{marginTop: "50px"}}>
         

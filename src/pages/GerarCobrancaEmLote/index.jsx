@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import UserContext from '../../components/Context';
 
 
@@ -13,7 +13,7 @@ export function GerarCobrancaEmLote() {
 
             <p>Olá {user}</p>
 
-            <p>Gerar Cobrança</p>
+            <p>Gerar Cobrança em lote</p>
         </div>
     );
 }
