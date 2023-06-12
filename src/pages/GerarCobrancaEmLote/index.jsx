@@ -1,20 +1,19 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../../components/Context';
-import { Header } from '../../components/Header'
+
 
 
 export function GerarCobrancaEmLote() {
 
-    const { user, route} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
 
     return (
-        <div>
-            <Header />
+        <div>           
 
             <p>Olá {user}</p>
 
-            <p>Você está na página: {route}</p>
+            <p>Gerar Cobrança</p>
         </div>
     );
 }

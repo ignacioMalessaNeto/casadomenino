@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../../components/Context';
-import { Header } from '../../components/Header'
+
 
 
 export function GerenciarCobranca() {
 
-    const { user, route} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     return (
         <div>
-            <Header />
+           
 
             <p>Olá {user}</p>
 
-            <p>Você está na página: {route}</p>
+            <p>Gerenciar Cobrança</p>
         </div>
     );
 }
