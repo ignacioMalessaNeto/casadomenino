@@ -1,23 +1,31 @@
-import { Button,  CardActions,  Box, Card, CardContent, Typography, Link} from '@mui/material';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Button, CardActions, Box, Card, CardContent, Typography } from '@mui/material';
+import ModalPagamento from '../ModalPagamento';
+import axios from 'axios';
 
 function Cards() {
-
+    const [openModal, setOpenModal] = useState(false);
     const [campanhas, setCampanhas] = useState([]);
 
     useEffect(() => {
         try {
-          axios.get('https://strapi-production-c201.up.railway.app/api/campanhas?populate=*').then((response) => {
-            setCampanhas(response.data.data)
-            console.log(response.data.data)
-          })
+            axios.get('https://strapi-production-c201.up.railway.app/api/campanhas?populate=*').then((response) => {
+                setCampanhas(response.data.data)
+                console.log(response.data.data)
+            })
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-    
-      }, []);
-    
+
+    }, []);
+
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
+    };
 
     return (
         <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap", justifyContent: 'center' }}>
@@ -29,14 +37,14 @@ function Cards() {
                         <Typography variant="body1" >{data.attributes.descricao}</Typography>
                     </CardContent>
                     <CardActions sx={{ display: "flex", justifyContent: 'space-between' }}>
-                        <Button variant="contained" size="small" color="primary">
-                            <Link href={data.attributes.link_pagamento} color="inherit" underline="none" >Doar</Link>
+                        <Button variant="contained" size="small" color="primary" onClick={handleOpenModal}>
+                        Doar
                         </Button>
                     </CardActions>
                 </Card>
             ))}
 
-
+            <ModalPagamento open={openModal} onClose={handleCloseModal} />
         </Box>
     )
 }
