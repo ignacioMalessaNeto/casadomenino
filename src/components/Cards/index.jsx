@@ -35,6 +35,7 @@ function Cards() {
                         <button onClick={handleOpenModal} style={{ border: 'none', padding: 0, background: 'none' }}>
                             <img src={`https://strapi-production-c201.up.railway.app${data.attributes.imagem.data.attributes.formats.medium.url}`} style={{ width: '100%', height: 'auto' }} />
                         </button>
+                        <Typography variant="h5" >{data.attributes.titulo}</Typography>
                         <Typography variant="body1" >{data.attributes.descricao}</Typography>
                     </CardContent>
                     <CardActions sx={{ display: "flex" }}>
