@@ -28,21 +28,26 @@ function Cards() {
     };
 
     return (
-        <Box sx={{ display: "flex", gap: "15px", flexWrap: "wrap", justifyContent: 'center' }}>
+        <Box sx={{ width: "100%",display: "flex", gap: "15px", flexWrap: "wrap", justifyContent: 'center' }}>
             {campanhas.map((data) => (
-                <Card key={data.attributes.id}>
-                    <CardContent sx={{ maxWidth: 400, display: "flex", flexDirection: "column" }}>
-                        <img src={`https://strapi-production-c201.up.railway.app${data.attributes.imagem.data.attributes.formats.medium.url}`} />
-                        <Typography gutterBottom variant="h6" component="div">{data.attributes.titulo}</Typography>
+                <Card elevation={0} key={data.attributes.id}>
+                    <CardContent sx={{ maxWidth: "350px", display: "flex", flexDirection: "column" }}>
+                        <button onClick={handleOpenModal} style={{ border: 'none', padding: 0, background: 'none' }}>
+                            <img src={`https://strapi-production-c201.up.railway.app${data.attributes.imagem.data.attributes.formats.medium.url}`} style={{ width: '100%', height: 'auto' }} />
+                        </button>
                         <Typography variant="body1" >{data.attributes.descricao}</Typography>
                     </CardContent>
-                    <CardActions sx={{ display: "flex", justifyContent: 'space-between' }}>
-                        <Button variant="contained" size="small" color="primary" onClick={handleOpenModal}>
-                        Doar
+                    <CardActions sx={{ display: "flex" }}>
+                        <Button sx={{ padding: "10px"}} variant="contained" size="small" color="primary" onClick={handleOpenModal}>
+                            Doar
+                        </Button>
+                        <Button sx={{ padding: "10px"}} variant="contained" size="small" color="primary" onClick={handleOpenModal}>
+                            Doar por boleto
                         </Button>
                     </CardActions>
                 </Card>
             ))}
+            
 
             <ModalPagamento open={openModal} onClose={handleCloseModal} />
         </Box>

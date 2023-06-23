@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../../components/Context';
 
-
+import { Typography } from '@mui/material';
 
 export function GerenciarCobranca() {
 
@@ -11,9 +11,9 @@ export function GerenciarCobranca() {
         <div>
            
 
-            <p>Olá {user}</p>
+            <Typography color="primary">Olá {user}</Typography>
 
-            <p>Gerenciar Cobrança</p>
+            <Typography color="primary">Gerenciar Cobrança</Typography>
         </div>
     );
 }

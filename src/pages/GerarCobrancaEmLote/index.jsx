@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../../components/Context';
 
+import { Typography } from '@mui/material';
 
 
 export function GerarCobrancaEmLote() {
@@ -9,11 +10,11 @@ export function GerarCobrancaEmLote() {
 
 
     return (
-        <div>           
+        <div>
 
-            <p>Olá {user}</p>
+            <Typography color="primary">Olá {user}</Typography>
 
-            <p>Gerar Cobrança em lote</p>
+            <Typography color="primary">Gerar Cobrança em lote</Typography>
         </div>
     );
 }

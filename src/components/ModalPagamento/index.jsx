@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {Modal, Box, Button, Typography, TextField, MenuItem, Select, InputLabel, FormControl, IconButton, Divider, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import swal from 'sweetalert';
+
 
 const ModalPagamento = ({ open, onClose }) => {
 
@@ -16,9 +18,7 @@ const ModalPagamento = ({ open, onClose }) => {
         const parsedValue = parseFloat(input.replace(',', '.'));
 
         if (parsedValue < 5) {
-            // Realize a ação desejada para tratar o valor abaixo de 5
-            // Por exemplo, exiba uma mensagem de erro ou desabilite o botão de envio
-            console.log('O valor mínimo é R$5,00');
+            swal("O valor mínimo é R$5,00");
             setValor('');
         } else {
             setValor(input);
@@ -81,7 +81,7 @@ const ModalPagamento = ({ open, onClose }) => {
 
                     <TextField
                         sx={{ width: '420px' }}
-                        label="Telefone"
+                        label="Celular"
                         inputProps={{ maxLength: 11 }}
                         placeholder="(DD)XXXXXXXXX"
 
@@ -134,8 +134,7 @@ const ModalPagamento = ({ open, onClose }) => {
                 <Divider
                     sx={{
                         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
-                        backgroundColor: "primary-dark",
-                        height: "8px",
+                        backgroundColor: "primary-dark"
                     }}
                 />
 

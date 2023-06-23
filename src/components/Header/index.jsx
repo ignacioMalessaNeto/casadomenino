@@ -1,10 +1,26 @@
-import React, { useState} from 'react';
+import HeaderFixed from '../HeaderFixed';
+import React, { useState, useEffect } from 'react';
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
-import {MenuItem, Button,Container,Menu,Typography,IconButton, Toolbar, Box, AppBar} from '@mui/material';
+import { MenuItem, Button, Container, Menu, Typography, IconButton, Toolbar, Box, AppBar } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 function Header() {
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.pageYOffset;
+      setIsFixed(currentPosition > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -15,33 +31,39 @@ function Header() {
     setAnchorElNav(null);
   };
 
- 
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            CMJP
-          </Typography>
+    <>
+      <HeaderFixed />
+      <AppBar
+        position="sticky"
+        top={isFixed ? '0' : 'auto'}
+        sx={{ zIndex: 10 }}
+        className={isFixed ? 'fixed-appbar' : ''}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              CMJP
+            </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -71,7 +93,7 @@ function Header() {
             >
               <Link to="/">
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Home</Typography>
+                  <Typography sx={{color: "blue"}} textAlign="center" fontWeight={"400"}>Home</Typography>
                 </MenuItem>
                 </Link>
                 <Link to="/gerar-cobranca">
@@ -112,43 +134,44 @@ function Header() {
             CMJP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                <Link to="/">
+            <Link to="/">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-              >                
-                Home
-              </Button>
-                </Link>
-                <Link to="/gerar-cobranca">
+            >                
+              Home
+            </Button>
+            </Link>
+            <Link to="/gerar-cobranca">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Gerar boleto
               </Button>
-                </Link>
-                <Link to="/gerar-cobranca-em-lote">
+            </Link>
+            <Link to="/gerar-cobranca-em-lote">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Gerar boleto em lote
               </Button>
-                </Link>
-                <Link to="/gerenciar-cobranca">
+            </Link>
+            <Link to="/gerenciar-cobranca">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Gerenciar cobrança
               </Button>
-                </Link>
-            
+            </Link>
           </Box>          
         </Toolbar>
       </Container>
     </AppBar>
+    </>
   );
 }
+
 export default Header;
